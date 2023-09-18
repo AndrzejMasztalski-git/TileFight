@@ -7,11 +7,11 @@ public class WorldSceneChange : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "WinterWorldEntry")
+        if(collision.tag == "DesertWorldEntry")
         {
             SceneManager.LoadScene(1);
         }
-        else if(collision.tag == "DesertWorldEntry")
+        else if(collision.tag == "WinterWorldEntry")
         {
             SceneManager.LoadScene(2);
         }
