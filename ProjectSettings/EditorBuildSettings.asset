@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/StartWorld.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/DesertWorld.unity
+    guid: 01596ed64a3c99f45bce12df2521282a
+  - enabled: 1
+    path: Assets/Scenes/WinterWorld.unity
+    guid: 7313892d63b81d240b41e58b04da2c9b
+  - enabled: 1
+    path: Assets/Scenes/FinalWorld.unity
+    guid: dfb35815dc4a0494fbe34f2ff640f799
   m_configObjects: {}
