@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     Animator anim;
-    public string[] staticDirections = { "Static North", "Static NW", "Static W", "Static SW", "Static S", "Static SE", "Static E", "Static NE" };
-    public string[] runDirections = { "Run N", "Run NW", "Run W", "Run SW", "Run S", "Run SE", "Run E", "Run NE" };
+    public string[] staticDirections = {"Static NW","Static SW","Static SE","Static NE" };
+    public string[] runDirections = {"Run NW","Run SW","Run SE","Run NE" };
+    //public string[] staticDirections = { "Static North", "Static NW", "Static W", "Static SW", "Static S", "Static SE", "Static E", "Static NE" };
+    //public string[] runDirections = { "Run N", "Run NW", "Run W", "Run SW", "Run S", "Run SE", "Run E", "Run NE" };
 
     int lastDirection;
 
