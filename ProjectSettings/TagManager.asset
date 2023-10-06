@@ -8,6 +8,7 @@ TagManager:
   - FinalWorldEntry
   - DesertWorldEntry
   - Enemy
+  - Fireball
   layers:
   - Default
   - TransparentFX

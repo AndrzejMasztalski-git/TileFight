@@ -5,16 +5,13 @@ using UnityEngine;
 
 public class AttackSystem : MonoBehaviour
 {
-    //private void OnMouseDown()
-    //{
-    //    Debug.Log("Attack!!!");
-    //}
-
     public float speed = 5f;
     private Vector3 target;
     public GameObject fireballPrefab;
     public SpriteRenderer fireballSprite;
     public float destroyDelay = 3f;
+    public Player player;
+    public GameObject character;
 
     private void Start()
     {
@@ -25,9 +22,13 @@ public class AttackSystem : MonoBehaviour
     private void Update()
     {
         
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonDown(1) && player.currentMana >= 5)
         {
-          FireballMove();
+                FireballMove();
+        }
+        else if(player.currentMana < 5)
+        {
+            Debug.Log("Not enough Mana!");
         }
 
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
@@ -37,11 +38,12 @@ public class AttackSystem : MonoBehaviour
     public void FireballMove()
     {
         
+        gameObject.transform.position = character.transform.position;
 
         fireballSprite.GetComponent<SpriteRenderer>().enabled = true;
 
         GameObject fireballClone;
-        fireballClone = Instantiate(fireballPrefab, transform.position, transform.rotation);
+        fireballClone = Instantiate(fireballPrefab, character.transform.position, character.transform.rotation);
 
 
         target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -59,7 +61,7 @@ public class AttackSystem : MonoBehaviour
         if(collision.tag == "Enemy")
         {
             Destroy(gameObject);
-            //Debug.Log("TRAFIENIE");
+            
         }
     }
 }

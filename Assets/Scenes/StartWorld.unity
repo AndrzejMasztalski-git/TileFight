@@ -22875,6 +22875,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 871382759}
     m_Modifications:
+    - target: {fileID: -883659233384956608, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: m_Mass
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: -883659233384956608, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -883659233384956608, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -883659233384956608, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -883659233384956608, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019826821166600688, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019826821166600688, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 871382763}
+    - target: {fileID: 3019826821166600688, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 871382757}
     - target: {fileID: 3019826821166600692, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -22921,6 +22953,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3019826821166600693, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
       propertyPath: m_Name
+      value: Fireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019826821166600693, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: m_TagString
       value: Fireball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
