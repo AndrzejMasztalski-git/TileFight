@@ -9,6 +9,7 @@ TagManager:
   - DesertWorldEntry
   - Enemy
   - Fireball
+  - Chest
   layers:
   - Default
   - TransparentFX
@@ -48,4 +49,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2612814449
+    locked: 0
+  - name: Triggers
+    uniqueID: 494170337
     locked: 0

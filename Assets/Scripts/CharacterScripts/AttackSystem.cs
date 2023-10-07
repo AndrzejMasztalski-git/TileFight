@@ -12,7 +12,6 @@ public class AttackSystem : MonoBehaviour
     public float destroyDelay = 3f;
     public Player player;
     public GameObject character;
-
     private void Start()
     {
         target = transform.position;
@@ -39,6 +38,7 @@ public class AttackSystem : MonoBehaviour
     {
         
         gameObject.transform.position = character.transform.position;
+        
 
         fireballSprite.GetComponent<SpriteRenderer>().enabled = true;
 

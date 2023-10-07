@@ -15,6 +15,6 @@ public class ManaBar : MonoBehaviour
 
     public void SetMaxMana(int mana)
     {
-        slider.value = mana;
+        slider.maxValue = mana;
     }
 }
