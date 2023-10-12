@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        playerDamage = 10;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(maxHealth);
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour
             else if(chosenBoost == "damage")
             {
                 Debug.Log("damage added");
-                playerDamage += 10;
+                playerDamage += 5;
                 Destroy(collision.gameObject);
             }
             else if(chosenBoost == "mana")
