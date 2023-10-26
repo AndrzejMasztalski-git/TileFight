@@ -40,14 +40,9 @@ public class EnemyStateMachine : MonoBehaviour
             case EnemyState.Move:
                 if (PlayerInRange())
                 {
-                    if (PlayerInProximity())
-                    {
+                   
                         MoveTowardsPlayer();
-                    }
-                    else
-                    {
-                        ChangeState(EnemyState.Idle);
-                    }
+                   
                 }
                 else
                 {
