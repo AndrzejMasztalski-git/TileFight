@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalDimension.unity
     guid: ff15f41be0004df42b5e9dbe55dfaf03
+  - enabled: 1
+    path: Assets/Scenes/StartMenuScene.unity
+    guid: f4be5737939bab548ae30e9e543c5462
   m_configObjects: {}
