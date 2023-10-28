@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Fireball
   - Chest
+  - Spawner
   layers:
   - Default
   - TransparentFX

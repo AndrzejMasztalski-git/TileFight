@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 10.0f; // Czas miêdzy kolejnymi spawnami (10 sekund)
     public int enemiesSpawned;
     private float timeSinceLastSpawn = 0.0f;
+    public float spawnerHealth = 30;
 
     void Update()
     {
@@ -27,4 +28,11 @@ public class EnemySpawner : MonoBehaviour
             enemiesSpawned++;
         }
     }
+
+
+    public void DestroySpawner()
+    {
+        Destroy(gameObject);
+    }
+
 }

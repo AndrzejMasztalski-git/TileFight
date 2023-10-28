@@ -12,8 +12,10 @@ public class AttackSystem : MonoBehaviour
     public float destroyDelay = 3f;
     public Player player;
     public GameObject character;
+    public EnemySpawner spawner;
     private void Start()
     {
+        spawner.GetComponent<EnemySpawner>();
         target = transform.position;
         fireballSprite.GetComponent<SpriteRenderer>().enabled = false;
     }
@@ -62,6 +64,18 @@ public class AttackSystem : MonoBehaviour
         {
             Destroy(gameObject);
             
+        }
+        else if(collision.tag == "Spawner")
+        {
+            Destroy(gameObject);
+            if(spawner.spawnerHealth <= 0)
+            {
+                Destroy(spawner.gameObject);
+            }
+            else
+            {
+                spawner.spawnerHealth -= player.playerDamage;
+            }
         }
     }
 }

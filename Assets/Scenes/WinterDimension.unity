@@ -10255,9 +10255,11 @@ GameObject:
   - component: {fileID: 435075540}
   - component: {fileID: 435075541}
   - component: {fileID: 435075542}
+  - component: {fileID: 435075544}
+  - component: {fileID: 435075543}
   m_Layer: 0
   m_Name: Spawn_Sword
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10345,6 +10347,71 @@ MonoBehaviour:
   spawnPoint: {fileID: 435075540}
   spawnInterval: 10
   enemiesSpawned: 0
+--- !u!68 &435075543
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435075539}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.33186167, y: -0.049355924}
+  - {x: 0.3092084, y: 0.070840836}
+  - {x: 0.27297592, y: 0.1610136}
+  - {x: 0.048707485, y: 0.29080868}
+  - {x: 0.03762293, y: 0.36636543}
+  - {x: 0.14709663, y: 0.36751556}
+  - {x: 0.15453291, y: 0.4199171}
+  - {x: 0.016966105, y: 0.41496372}
+  - {x: 0.036296844, y: 0.57052326}
+  - {x: -0.029369354, y: 0.59144497}
+  - {x: -0.020454168, y: 0.47501945}
+  - {x: -0.040881395, y: 0.42930984}
+  - {x: -0.1568873, y: 0.43480015}
+  - {x: -0.17382073, y: 0.36811352}
+  - {x: -0.054115057, y: 0.35800552}
+  - {x: -0.057632685, y: 0.29386997}
+  - {x: -0.15335798, y: 0.24851513}
+  - {x: -0.2861588, y: 0.17466831}
+  - {x: -0.31948113, y: 0.052744865}
+  - {x: -0.3139937, y: -0.07296753}
+  - {x: -0.16135883, y: -0.16513824}
+  - {x: -0.003181219, y: -0.20393562}
+  - {x: 0.151479, y: -0.1670332}
+  - {x: 0.31849927, y: -0.07082504}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!50 &435075544
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435075539}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -27812,9 +27879,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 871382763}
     - target: {fileID: 3019826821166600688, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 435075542}
+    - target: {fileID: 3019826821166600688, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 871382757}
+    - target: {fileID: 3019826821166600689, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3019826821166600692, guid: 8cc6166f7f6303342bb6dd9823f52db3, type: 3}
       propertyPath: m_RootOrder
       value: 1
