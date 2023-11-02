@@ -9,10 +9,11 @@ public class AttackSystem : MonoBehaviour
     private Vector3 target;
     public GameObject fireballPrefab;
     public SpriteRenderer fireballSprite;
-    public float destroyDelay = 3f;
+    public float destroyDelay = 1f;
     public Player player;
     public GameObject character;
     public EnemySpawner spawner;
+    private bool isFireballActive = false;
     private void Start()
     {
         spawner.GetComponent<EnemySpawner>();
@@ -38,25 +39,50 @@ public class AttackSystem : MonoBehaviour
 
     public void FireballMove()
     {
-        
-        gameObject.transform.position = character.transform.position;
-        
 
-        fireballSprite.GetComponent<SpriteRenderer>().enabled = true;
+        if (!isFireballActive)
+        {
+            isFireballActive = true;
 
-        GameObject fireballClone;
-        fireballClone = Instantiate(fireballPrefab, character.transform.position, character.transform.rotation);
+            gameObject.transform.position = character.transform.position;
+            fireballSprite.GetComponent<SpriteRenderer>().enabled = true;
+
+            GameObject fireballClone;
+            fireballClone = Instantiate(fireballPrefab, character.transform.position, character.transform.rotation);
+
+            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            target.z = transform.position.z;
+
+            Destroy(gameObject, destroyDelay);
+            // Po pewnym czasie, ustaw isFireballActive na false, aby mo¿na by³o strzelaæ ponownie
+            StartCoroutine(ResetFireballActive());
+        }
+
+        //gameObject.transform.position = character.transform.position;
 
 
-        target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        target.z = transform.position.z;
+        //fireballSprite.GetComponent<SpriteRenderer>().enabled = true;
 
-        Destroy(gameObject, destroyDelay);
-        
+        //GameObject fireballClone;
+        //fireballClone = Instantiate(fireballPrefab, character.transform.position, character.transform.rotation);
+
+
+        //target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //target.z = transform.position.z;
+
+        //Destroy(gameObject, destroyDelay);
+
 
     }
 
-    
+    private IEnumerator ResetFireballActive()
+    {
+        // Poczekaj przez destroyDelay sekund, a nastêpnie ustaw isFireballActive na false
+        yield return new WaitForSeconds(destroyDelay);
+        isFireballActive = false;
+    }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
