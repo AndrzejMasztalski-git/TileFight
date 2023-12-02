@@ -13,6 +13,7 @@ TagManager:
   - Spawner
   - Key
   - StartWorldEntry
+  - WinterWorldExit
   layers:
   - Default
   - TransparentFX

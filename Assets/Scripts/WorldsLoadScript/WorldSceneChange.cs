@@ -5,23 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class WorldSceneChange : MonoBehaviour
 {
-
-    public Player player;
+    public GameObject player;
+    public GameObject winterWorldExit;
+    public Player playerScript;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "DesertWorldEntry")
         {
-            SceneManager.LoadScene(1);
+            Debug.Log("Wejœcie");
         }
         else if(collision.tag == "WinterWorldEntry")
         {
-            SceneManager.LoadScene(2);
+            player.transform.position = winterWorldExit.transform.position;
         }
         else if (collision.tag == "FinalWorldEntry")
         {
-            if(player.keyCounter >=2)
+            if(playerScript.keyCounter >=2)
             {
-                SceneManager.LoadScene(3);
+                Debug.Log("Wejœcie");
             }
             else
             {

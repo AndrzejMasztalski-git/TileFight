@@ -9,15 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/StartWorld.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/DesertDimension.unity
-    guid: f530a97d678179e4fa9dd84c7a46af64
-  - enabled: 1
-    path: Assets/Scenes/WinterDimension.unity
-    guid: 6049293e60d13d14298a9d093398cf8e
-  - enabled: 1
-    path: Assets/Scenes/FinalDimension.unity
-    guid: ff15f41be0004df42b5e9dbe55dfaf03
-  - enabled: 1
     path: Assets/Scenes/StartMenuScene.unity
     guid: f4be5737939bab548ae30e9e543c5462
   m_configObjects: {}
