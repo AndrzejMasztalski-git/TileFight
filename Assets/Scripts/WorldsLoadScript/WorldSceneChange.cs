@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class WorldSceneChange : MonoBehaviour
 {
+
+    public Player player;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "DesertWorldEntry")
@@ -17,7 +19,15 @@ public class WorldSceneChange : MonoBehaviour
         }
         else if (collision.tag == "FinalWorldEntry")
         {
-            SceneManager.LoadScene(3);
+            if(player.keyCounter >=2)
+            {
+                SceneManager.LoadScene(3);
+            }
+            else
+            {
+                Debug.Log("Brak wymaganej iloœci kluczy");
+            }
+            
         }
     }
 }

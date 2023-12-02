@@ -136,11 +136,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   moveSpeed: 2
-  runSpeed: 5
+  runSpeed: 2
   attackRange: 2
-  detectionRange: 10
+  detectionRange: 5
   playerProximityDistance: 2
-  rb: {fileID: 0}
+  rb: {fileID: -7397646884386233666}
 --- !u!50 &-7397646884386233666
 Rigidbody2D:
   serializedVersion: 4

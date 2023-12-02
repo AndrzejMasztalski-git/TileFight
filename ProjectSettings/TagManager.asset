@@ -11,6 +11,8 @@ TagManager:
   - Fireball
   - Chest
   - Spawner
+  - Key
+  - StartWorldEntry
   layers:
   - Default
   - TransparentFX

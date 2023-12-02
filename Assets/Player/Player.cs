@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public int maxMana = 100;
     public int currentMana;
     public int playerDamage;
+    public int keyCounter = 0;
     [SerializeField] ManaBar manaBar;
     [SerializeField] HealthBar healthBar;
 
@@ -35,8 +36,14 @@ public class Player : MonoBehaviour
             TakeDamage(10);
         }
 
+        if (collision.tag == "Key")
+        {
+            keyCounter++;
+            Destroy(collision.gameObject);
+        }
 
-        if(collision.tag == "Chest")
+
+        if (collision.tag == "Chest")
         {
             Debug.Log("Chest opened!");
             System.Random rand = new();
