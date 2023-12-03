@@ -6,17 +6,23 @@ using UnityEngine.SceneManagement;
 public class WorldSceneChange : MonoBehaviour
 {
     public GameObject player;
-    public GameObject winterWorldExit;
+    public GameObject winterWorldSpawn;
+    public GameObject desertWorldSpawn;
+    public GameObject startWorldSpawn;
     public Player playerScript;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "DesertWorldEntry")
         {
-            Debug.Log("Wejœcie");
+            player.transform.position = desertWorldSpawn.transform.position;
+        }
+        else if (collision.tag == "DesertWorldExit" || collision.tag == "WinterWorldExit" || collision.tag == "FinalWorldExit")
+        {
+            player.transform.position = startWorldSpawn.transform.position;
         }
         else if(collision.tag == "WinterWorldEntry")
         {
-            player.transform.position = winterWorldExit.transform.position;
+            player.transform.position = winterWorldSpawn.transform.position;
         }
         else if (collision.tag == "FinalWorldEntry")
         {

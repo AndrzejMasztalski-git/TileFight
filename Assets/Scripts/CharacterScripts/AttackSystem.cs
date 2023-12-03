@@ -12,11 +12,10 @@ public class AttackSystem : MonoBehaviour
     public float destroyDelay = 1f;
     public Player player;
     public GameObject character;
-    public EnemySpawner spawner;
     private bool isFireballActive = false;
     private void Start()
     {
-        spawner.GetComponent<EnemySpawner>();
+        
         target = transform.position;
         fireballSprite.GetComponent<SpriteRenderer>().enabled = false;
     }
@@ -57,22 +56,6 @@ public class AttackSystem : MonoBehaviour
             // Po pewnym czasie, ustaw isFireballActive na false, aby mo¿na by³o strzelaæ ponownie
             StartCoroutine(ResetFireballActive());
         }
-
-        //gameObject.transform.position = character.transform.position;
-
-
-        //fireballSprite.GetComponent<SpriteRenderer>().enabled = true;
-
-        //GameObject fireballClone;
-        //fireballClone = Instantiate(fireballPrefab, character.transform.position, character.transform.rotation);
-
-
-        //target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //target.z = transform.position.z;
-
-        //Destroy(gameObject, destroyDelay);
-
-
     }
 
     private IEnumerator ResetFireballActive()
@@ -86,22 +69,10 @@ public class AttackSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
             Destroy(gameObject);
-            
-        }
-        else if(collision.tag == "Spawner")
-        {
-            Destroy(gameObject);
-            if(spawner.spawnerHealth <= 0)
-            {
-                Destroy(spawner.gameObject);
-            }
-            else
-            {
-                spawner.spawnerHealth -= player.playerDamage;
-            }
+
         }
     }
 }

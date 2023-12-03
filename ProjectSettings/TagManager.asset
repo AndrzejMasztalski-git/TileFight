@@ -14,6 +14,8 @@ TagManager:
   - Key
   - StartWorldEntry
   - WinterWorldExit
+  - StartWorldSpawn
+  - DesertWorldExit
   layers:
   - Default
   - TransparentFX
