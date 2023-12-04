@@ -28,7 +28,7 @@ public class WorldSceneChange : MonoBehaviour
         {
             if(playerScript.keyCounter >=2)
             {
-                Debug.Log("Wejœcie");
+                Destroy(collision.gameObject);
             }
             else
             {
