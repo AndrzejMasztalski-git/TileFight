@@ -8,9 +8,10 @@ public class Player : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public int maxMana = 100;
-    public int currentMana;
-    public int playerDamage;
+    public int currentMana = 100;
+    public int playerDamage = 10;
     public int keyCounter = 0;
+    public int skillPoints = 0;
     [SerializeField] ManaBar manaBar;
     [SerializeField] HealthBar healthBar;
 
@@ -46,33 +47,35 @@ public class Player : MonoBehaviour
         if (collision.tag == "Chest")
         {
             Debug.Log("Chest opened!");
-            System.Random rand = new();
-            int index = rand.Next(boosts.Length);
+            skillPoints++;
+            Destroy(collision.gameObject);
+            //System.Random rand = new();
+            //int index = rand.Next(boosts.Length);
 
-            string chosenBoost = boosts[index];
+            //string chosenBoost = boosts[index];
 
-            if(chosenBoost == "hp")
-            {
-                Debug.Log("hp added");
-                maxHealth += 10;
-                healthBar.SetMaxHealth(maxHealth);
-                Destroy(collision.gameObject);
-            }
-            else if(chosenBoost == "damage")
-            {
-                Debug.Log("damage added");
-                playerDamage += 5;
-                Destroy(collision.gameObject);
-            }
-            else if(chosenBoost == "mana")
-            {
-                Debug.Log("mana added");
-                maxMana += 10;
-                manaBar.SetMaxMana(maxMana);
-                Destroy(collision.gameObject);
-            }
+            //if(chosenBoost == "hp")
+            //{
+            //    Debug.Log("hp added");
+            //    maxHealth += 10;
+            //    healthBar.SetMaxHealth(maxHealth);
+            //    Destroy(collision.gameObject);
+            //}
+            //else if(chosenBoost == "damage")
+            //{
+            //    Debug.Log("damage added");
+            //    playerDamage += 5;
+            //    Destroy(collision.gameObject);
+            //}
+            //else if(chosenBoost == "mana")
+            //{
+            //    Debug.Log("mana added");
+            //    maxMana += 10;
+            //    manaBar.SetMaxMana(maxMana);
+            //    Destroy(collision.gameObject);
+            //}
 
-            
+
         }
 
 
@@ -91,6 +94,23 @@ public class Player : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+    }
+
+    public void AddHealth(int health)
+    {
+        currentHealth += health;
+        healthBar.SetHealth(currentHealth);
+    }
+
+    public void AddMana(int mana)
+    {
+        currentMana += mana;
+        manaBar.SetMana(currentMana);
+    }
+
+    public void AddDamage(int damage)
+    {
+        playerDamage += damage;
     }
 
     void UseMana(int usedMana)
