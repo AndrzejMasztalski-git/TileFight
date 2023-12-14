@@ -46,4 +46,16 @@ public class Enemy : MonoBehaviour
             enemyHealthBar.SetHealth(currentHealth);
         }
     }
+
+    
+
+    public void InitializeEnemy(EnemyGene gene)
+    {
+        // Use the gene's values to set the enemy's properties
+        maxHealth = gene.health;
+        currentHealth = gene.health;
+        damage = gene.damage;
+        speed = gene.speed;
+        // Assume that the `EnemyHealthBar` is already set up to reflect changes
+    }
 }

@@ -1,49 +1,36 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
-
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public Transform spawnPoint;
     public float spawnInterval = 10.0f;
     public int maxEnemiesToSpawn = 5;
-    private int enemiesSpawned = 0;
-    private float timeSinceLastSpawn = 0.0f;
     public float spawnerHealth = 30;
 
-    void Update()
-    {
-        timeSinceLastSpawn += Time.deltaTime;
+    public GeneticAlgorithm geneticAlgorithm;
+    public int initialSpawnCount = 10;
 
-        if (timeSinceLastSpawn >= spawnInterval && enemiesSpawned < maxEnemiesToSpawn)
-        {
-            SpawnEnemyWithRandomStats();
-            timeSinceLastSpawn = 0.0f;
-        }
+    void Start()
+    {
+        geneticAlgorithm = FindObjectOfType<GeneticAlgorithm>();
+        SpawnInitialEnemies();
     }
 
-    public void SpawnEnemyWithRandomStats()
+    void SpawnInitialEnemies()
     {
-        if (enemyPrefab != null && spawnPoint != null)
+        for (int i = 0; i < initialSpawnCount; i++)
         {
-            GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-            Enemy enemyComponent = newEnemy.GetComponent<Enemy>();
-            if (enemyComponent != null)
-            {
-                // Losowanie statystyk
-                int randomHealth = Random.Range(50, 150); // Zakres ¿ycia od 50 do 150
-                int randomAttack = Random.Range(10, 30);   // Zakres ataku od 10 do 30
-                int randomSpeed = Random.Range(3, 8);     // Zakres szybkoœci od 3 do 8
-
-                enemyComponent.SetupStats(randomHealth, randomAttack, randomSpeed);
-            }
-
-            enemiesSpawned++;
+            SpawnEnemy(); // You'll need to decide how to initialize their genes
         }
+        geneticAlgorithm.StartReproduction(); // Signal the GA to start reproducing enemies
     }
 
-    public void DestroySpawner()
+    void SpawnEnemy()
     {
-        Destroy(gameObject);
+        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+        // Initialize the enemy with default genes or random values
+        EnemyGene initialGene = new EnemyGene(Random.Range(50, 101), Random.Range(10, 21), Random.Range(1, 6), 0f); // Example values
+        enemy.GetComponent<Enemy>().InitializeEnemy(initialGene);
     }
 }

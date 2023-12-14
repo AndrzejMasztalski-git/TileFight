@@ -33073,6 +33073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 201505690}
   - component: {fileID: 201505689}
+  - component: {fileID: 201505691}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -33111,6 +33112,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &201505691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201505688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1a2f98f59cae941ae3acfe9b2df041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 1254502128}
+  spawner: {fileID: 1829336423}
 --- !u!1 &245368147
 GameObject:
   m_ObjectHideFlags: 0
@@ -72630,6 +72645,11 @@ CanvasRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3732682899548877629, guid: 6ff2bab3d3ed5d14e8847971ae050518, type: 3}
   m_PrefabInstance: {fileID: 532093823141155381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1829336423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6951325913219052684, guid: ef3acdfbcd589df40a2f19e2f12abe8d, type: 3}
+  m_PrefabInstance: {fileID: 1354528336}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1880066034
 GameObject:
