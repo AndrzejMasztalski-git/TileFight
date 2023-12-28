@@ -10,6 +10,8 @@ public class WorldSceneChange : MonoBehaviour
     public GameObject desertWorldSpawn;
     public GameObject startWorldSpawn;
     public Player playerScript;
+    public GameObject playerPrefab;
+    public GameObject finalBossSpawn;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "DesertWorldEntry")
@@ -28,7 +30,12 @@ public class WorldSceneChange : MonoBehaviour
         {
             if(playerScript.keyCounter >=2)
             {
+                Debug.Log("wejscie");
                 Destroy(collision.gameObject);
+                GameObject finalBoss = Instantiate(playerPrefab);
+                finalBoss.transform.position = finalBossSpawn.transform.position;
+                finalBoss.GetComponent<Enemy>().maxHealth = 150;
+                finalBoss.GetComponent<Enemy>().currentHealth = 150;
             }
             else
             {
