@@ -49,31 +49,7 @@ public class Player : MonoBehaviour
             Debug.Log("Chest opened!");
             skillPoints++;
             Destroy(collision.gameObject);
-            //System.Random rand = new();
-            //int index = rand.Next(boosts.Length);
-
-            //string chosenBoost = boosts[index];
-
-            //if(chosenBoost == "hp")
-            //{
-            //    Debug.Log("hp added");
-            //    maxHealth += 10;
-            //    healthBar.SetMaxHealth(maxHealth);
-            //    Destroy(collision.gameObject);
-            //}
-            //else if(chosenBoost == "damage")
-            //{
-            //    Debug.Log("damage added");
-            //    playerDamage += 5;
-            //    Destroy(collision.gameObject);
-            //}
-            //else if(chosenBoost == "mana")
-            //{
-            //    Debug.Log("mana added");
-            //    maxMana += 10;
-            //    manaBar.SetMaxMana(maxMana);
-            //    Destroy(collision.gameObject);
-            //}
+            
 
 
         }
@@ -88,9 +64,15 @@ public class Player : MonoBehaviour
             UseMana(5);
             manaBar.SetMana(currentMana);
         }
+
+        if(currentHealth <= 0)
+        {
+            Time.timeScale = 0;
+            Debug.Log("Game Over");
+        }
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

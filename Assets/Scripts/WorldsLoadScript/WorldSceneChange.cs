@@ -12,6 +12,7 @@ public class WorldSceneChange : MonoBehaviour
     public Player playerScript;
     public GameObject playerPrefab;
     public GameObject finalBossSpawn;
+    GameObject finalBoss;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "DesertWorldEntry")
@@ -32,7 +33,7 @@ public class WorldSceneChange : MonoBehaviour
             {
                 Debug.Log("wejscie");
                 Destroy(collision.gameObject);
-                GameObject finalBoss = Instantiate(playerPrefab);
+                finalBoss = Instantiate(playerPrefab);
                 finalBoss.transform.position = finalBossSpawn.transform.position;
                 finalBoss.GetComponent<Enemy>().maxHealth = 150;
                 finalBoss.GetComponent<Enemy>().currentHealth = 150;
@@ -42,6 +43,14 @@ public class WorldSceneChange : MonoBehaviour
                 Debug.Log("Brak wymaganej iloœci kluczy");
             }
             
+        }
+    }
+
+    private void Update()
+    {
+        if (finalBoss.GetComponent<Enemy>().currentHealth <= 0) {
+            Time.timeScale = 0;
+            Debug.Log("YOU WIN");
         }
     }
 }

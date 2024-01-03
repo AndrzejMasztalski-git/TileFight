@@ -1,121 +1,108 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour
 {
-    public enum EnemyState
-    {
-        Idle,
-        Move,
-        Run,
-        Attack,
-    }
-
-    public EnemyState currentState;
-    public float moveSpeed = 2.0f;
-    public float runSpeed = 5.0f;
-    public float attackRange = 2.0f;
-    public float detectionRange = 10.0f;
-    public float playerProximityDistance = 2.0f; // Minimalna odleg³oœæ od gracza, aby rozpocz¹æ ruch
-    public Rigidbody2D rb;
-    private Vector3 targetPosition;
-    private Transform player;
+    public float moveSpeed = 2f;
+    public float chaseSpeed = 3f;
+    public float chaseDistance = 2f;
+    public float attackDistance = 1f;
+    private Vector2 randomDirection;
+    private float directionChangeInterval = 5f;
+    private Transform playerTransform;
+    private Rigidbody2D rb;
+    private float timer;
+    public Player player;
+    private enum State { Wandering, Chasing, Attacking }
+    private State state;
 
     void Start()
     {
-        currentState = EnemyState.Idle;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(ChangeDirection());
+        state = State.Wandering;
     }
 
     void Update()
     {
-        switch (currentState)
+        switch (state)
         {
-            case EnemyState.Idle:
-                if (ShouldStartMoving())
-                {
-                    ChangeState(EnemyState.Move);
-                }
+            case State.Wandering:
+                Wander();
+                CheckForChase();
                 break;
-
-            case EnemyState.Move:
-                if (PlayerInRange())
-                {
-                   
-                        MoveTowardsPlayer();
-                   
-                }
-                else
-                {
-                    MoveTowardsRandomTarget();
-                }
+            case State.Chasing:
+                Chase();
+                CheckForAttack();
                 break;
-
-            case EnemyState.Run:
-                // Analogicznie do poprzedniej wersji kodu
-                break;
-
-            case EnemyState.Attack:
-                // Analogicznie do poprzedniej wersji kodu
+            case State.Attacking:
+                Attack();
                 break;
         }
     }
 
-    bool ShouldStartMoving()
+    void Wander()
     {
-        return Random.Range(0, 100) < 5;
-    }
-
-    void MoveTowardsRandomTarget()
-    {
-        Vector2 randomTarget = GetRandomTarget();
-        Vector2 direction = (randomTarget - (Vector2)transform.position).normalized;
-        rb.velocity = direction * moveSpeed;
-    }
-
-    Vector2 GetRandomTarget()
-    {
-        float randomX = Random.Range(-10f, 10f);
-        float randomY = Random.Range(-10f, 10f);
-        return new Vector2(randomX, randomY);
-    }
-
-    bool ReachedTarget()
-    {
-        float distance = Vector3.Distance(transform.position, targetPosition);
-        return distance < 0.1f;
-    }
-
-    void MoveTowardsPlayer()
-    {
-        Vector3 direction = (player.position - transform.position).normalized;
-        transform.position += direction * runSpeed * Time.deltaTime;
-    }
-
-    bool PlayerInRange()
-    {
-        float distance = Vector3.Distance(transform.position, player.position);
-        return distance < detectionRange;
-    }
-
-    bool PlayerInProximity()
-    {
-        float distance = Vector3.Distance(transform.position, player.position);
-        return distance <= playerProximityDistance;
-    }
-
-    void ChangeState(EnemyState newState)
-    {
-        currentState = newState;
-        if (newState == EnemyState.Move)
+        rb.velocity = randomDirection * moveSpeed;
+        timer += Time.deltaTime;
+        if (timer >= directionChangeInterval)
         {
-            SetNewRandomTarget();
+            timer = 0f;
+            ChangeDirectionNow();
         }
     }
 
-    void SetNewRandomTarget()
+    void Chase()
     {
-        float randomX = Random.Range(-10f, 10f);
-        float randomY = Random.Range(-10f, 10f);
-        targetPosition = new Vector3(randomX, randomY, 0);
+        Vector2 direction = (playerTransform.position - transform.position).normalized;
+        rb.velocity = direction * chaseSpeed;
+    }
+
+    void Attack()
+    {
+        player.TakeDamage(5);
+    }
+
+    void CheckForChase()
+    {
+        if (Vector2.Distance(transform.position, playerTransform.position) < chaseDistance)
+        {
+            state = State.Chasing;
+        }
+    }
+
+    void CheckForAttack()
+    {
+        if (Vector2.Distance(transform.position, playerTransform.position) < attackDistance)
+        {
+            state = State.Attacking;
+        }
+        else if (Vector2.Distance(transform.position, playerTransform.position) > chaseDistance)
+        {
+            state = State.Wandering;
+        }
+    }
+
+    IEnumerator ChangeDirection()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(directionChangeInterval);
+            ChangeDirectionNow();
+        }
+    }
+
+    void ChangeDirectionNow()
+    {
+        randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (state == State.Wandering || state == State.Chasing)
+        {
+            ChangeDirectionNow();
+        }
     }
 }
