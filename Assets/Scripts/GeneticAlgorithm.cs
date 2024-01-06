@@ -8,7 +8,7 @@ public class GeneticAlgorithm : MonoBehaviour
     
     
 
-    // List to hold the current population of enemy genes
+    
     private List<EnemyGene> population = new List<EnemyGene>();
     private int populationSize = 5;
     private float mutationRate = 0.01f;
@@ -110,9 +110,9 @@ public class GeneticAlgorithm : MonoBehaviour
     {
        
         return new EnemyGene(
-            (parent1.health + parent2.health) * 3 / 2,
-            (parent1.damage + parent2.damage) * 3 / 2,
-            (parent1.speed + parent2.speed) * 3 / 2,
+            (parent1.health + parent2.health),
+            (parent1.damage + parent2.damage),
+            (parent1.speed + parent2.speed),
             0f 
         );
     }
@@ -133,16 +133,17 @@ public class GeneticAlgorithm : MonoBehaviour
 
     public void StartReproduction()
     {
-        InvokeRepeating("ReproduceEnemy", 2.0f, 1.0f);
+        InvokeRepeating("ReproduceEnemy", 2.0f, 25.0f);
     }
 
     public void ReproduceEnemy()
     {
-        
-        EnemyGene parentGene = SelectParent();
-        EnemyGene newGene = Mutate(Crossover(parentGene, SelectParent()));
 
-        
+        EvolvePopulation();  // Ewoluuj populacjê przed reprodukcj¹
+
+        EnemyGene parentGene = SelectParent();  // Wybierz najlepszego rodzica z ewoluowanej populacji
+        EnemyGene newGene = parentGene;  // U¿yj tego rodzica jako nowego osobnika
+
         Vector3 spawnPosition = spawner.transform.position;
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         newEnemy.GetComponent<SpriteRenderer>().color = Color.green;
