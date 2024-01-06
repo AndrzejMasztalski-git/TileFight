@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GeneticAlgorithm : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GeneticAlgorithm : MonoBehaviour
     private float mutationRate = 0.01f;
     public GameObject enemyPrefab;
     public GameObject spawner;
+    public Text hpStat;
+    public Text dmgStat;
 
     void Start()
     {
@@ -107,9 +110,9 @@ public class GeneticAlgorithm : MonoBehaviour
     {
        
         return new EnemyGene(
-            (parent1.health + parent2.health) / 2,
-            (parent1.damage + parent2.damage) / 2,
-            (parent1.speed + parent2.speed) / 2,
+            (parent1.health + parent2.health) * 3 / 2,
+            (parent1.damage + parent2.damage) * 3 / 2,
+            (parent1.speed + parent2.speed) * 3 / 2,
             0f 
         );
     }
@@ -123,14 +126,14 @@ public class GeneticAlgorithm : MonoBehaviour
             
             gene.health = Mathf.Clamp(gene.health + Random.Range(5, 16), 50, 200);
             gene.damage = Mathf.Clamp(gene.damage + Random.Range(3, 11), 10, 40);
-            gene.speed = Mathf.Clamp(gene.speed + Random.Range(1, 5), 1, 15);
+            gene.speed = Mathf.Clamp(gene.speed + Random.Range(1, 5), 3, 9);
         }
         return gene;
     }
 
     public void StartReproduction()
     {
-        InvokeRepeating("ReproduceEnemy", 2.0f, 25.0f);
+        InvokeRepeating("ReproduceEnemy", 2.0f, 1.0f);
     }
 
     public void ReproduceEnemy()
@@ -144,6 +147,9 @@ public class GeneticAlgorithm : MonoBehaviour
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         newEnemy.GetComponent<SpriteRenderer>().color = Color.green;
         newEnemy.GetComponent<Enemy>().InitializeEnemy(newGene);
+
+        hpStat.text = newEnemy.GetComponent<Enemy>().currentHealth.ToString();
+        dmgStat.text = newEnemy.GetComponent<Enemy>().damage.ToString();
     }
 }
 
