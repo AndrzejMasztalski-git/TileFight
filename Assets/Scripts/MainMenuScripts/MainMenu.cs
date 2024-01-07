@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
     public void NewGameButtonClicked()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
     }
 
     

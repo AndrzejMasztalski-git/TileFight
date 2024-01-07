@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         currentHealth -= healthTaken;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         if (enemyHealthBar != null)
         {

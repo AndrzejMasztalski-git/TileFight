@@ -16,6 +16,7 @@ TagManager:
   - WinterWorldExit
   - StartWorldSpawn
   - DesertWorldExit
+  - FinalBoss
   layers:
   - Default
   - TransparentFX

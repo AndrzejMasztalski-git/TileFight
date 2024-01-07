@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class WorldSceneChange : MonoBehaviour
@@ -12,7 +13,11 @@ public class WorldSceneChange : MonoBehaviour
     public Player playerScript;
     public GameObject playerPrefab;
     public GameObject finalBossSpawn;
-    GameObject finalBoss;
+    public GameObject finalBoss;
+    public TMPro.TextMeshProUGUI winText;
+    public Button returnButton;
+    bool bossAlive = true;
+    bool finalWorldEntered = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "DesertWorldEntry")
@@ -33,10 +38,11 @@ public class WorldSceneChange : MonoBehaviour
             {
                 Debug.Log("wejscie");
                 Destroy(collision.gameObject);
-                finalBoss = Instantiate(playerPrefab);
+                finalBoss.SetActive(true);
                 finalBoss.transform.position = finalBossSpawn.transform.position;
                 finalBoss.GetComponent<Enemy>().maxHealth = 150;
                 finalBoss.GetComponent<Enemy>().currentHealth = 150;
+                finalWorldEntered = true;
             }
             else
             {
@@ -45,11 +51,28 @@ public class WorldSceneChange : MonoBehaviour
             
         }
     }
+    private void Start()
+    {
+        bossAlive = true;
+        
+    }
+
+    public void CheckIfBossAlive()
+    {
+        if(finalWorldEntered && finalBoss.GetComponent<Enemy>().currentHealth <= 0)
+        {
+            bossAlive=false;
+        }
+    }
 
     private void Update()
     {
-        if (finalBoss.GetComponent<Enemy>().currentHealth <= 0) {
+
+        CheckIfBossAlive();
+        if (!bossAlive) {
             Time.timeScale = 0;
+            winText.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+            returnButton.gameObject.SetActive(true);
             Debug.Log("YOU WIN");
         }
     }

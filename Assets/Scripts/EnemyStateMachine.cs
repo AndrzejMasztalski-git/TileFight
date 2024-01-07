@@ -61,7 +61,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     void Attack()
     {
-        player.TakeDamage(5);
+        
     }
 
     void CheckForChase()

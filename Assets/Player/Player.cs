@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class Player : MonoBehaviour
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     public int skillPoints = 0;
     [SerializeField] ManaBar manaBar;
     [SerializeField] HealthBar healthBar;
+    public TMPro.TextMeshProUGUI loseText;
+    public Button returnButton;
 
     string[] boosts = { "hp", "damage", "mana" };
 
@@ -32,10 +35,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Enemy")
-        {
-            TakeDamage(10);
-        }
+        
 
         if (collision.tag == "Key")
         {
@@ -57,6 +57,14 @@ public class Player : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            TakeDamage(10);
+        }
+    }
+
     private void Update()
     {
         if(Input.GetMouseButtonDown(1))
@@ -68,6 +76,8 @@ public class Player : MonoBehaviour
         if(currentHealth <= 0)
         {
             Time.timeScale = 0;
+            loseText.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+            returnButton.gameObject.SetActive(true);
             Debug.Log("Game Over");
         }
     }
