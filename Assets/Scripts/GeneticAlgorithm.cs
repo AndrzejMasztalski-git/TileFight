@@ -110,9 +110,9 @@ public class GeneticAlgorithm : MonoBehaviour
     {
        
         return new EnemyGene(
-            (parent1.health + parent2.health),
-            (parent1.damage + parent2.damage),
-            (parent1.speed + parent2.speed),
+            (parent1.health/2 + parent2.health),
+            (parent1.damage + parent2.damage/3),
+            (parent1.speed + parent2.speed/2),
             0f 
         );
     }
@@ -124,9 +124,9 @@ public class GeneticAlgorithm : MonoBehaviour
         if (Random.Range(0f, 1f) < mutationRate)
         {
             
-            gene.health = Mathf.Clamp(gene.health + Random.Range(5, 16), 50, 200);
-            gene.damage = Mathf.Clamp(gene.damage + Random.Range(3, 11), 10, 40);
-            gene.speed = Mathf.Clamp(gene.speed + Random.Range(1, 5), 3, 9);
+            gene.health = Mathf.Clamp(gene.health + Random.Range(-5, 16), 50, 200);
+            gene.damage = Mathf.Clamp(gene.damage + Random.Range(-3, 11), 10, 40);
+            gene.speed = Mathf.Clamp(gene.speed + Random.Range(-1, 5), 3, 9);
         }
         return gene;
     }

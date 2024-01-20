@@ -21,6 +21,6 @@ public class GUIScript : MonoBehaviour
         winText.GetComponent<TMPro.TextMeshProUGUI>().enabled = false;
         loseText.GetComponent<TMPro.TextMeshProUGUI>().enabled = false;
         returnButton.gameObject.SetActive(false);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

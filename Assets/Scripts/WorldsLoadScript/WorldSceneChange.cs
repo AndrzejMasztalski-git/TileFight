@@ -32,9 +32,14 @@ public class WorldSceneChange : MonoBehaviour
         {
             player.transform.position = winterWorldSpawn.transform.position;
         }
-        else if (collision.tag == "FinalWorldEntry")
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "FinalWorldEntry")
         {
-            if(playerScript.keyCounter >=2)
+            if (playerScript.keyCounter >= 2)
             {
                 Debug.Log("wejscie");
                 Destroy(collision.gameObject);
@@ -48,7 +53,7 @@ public class WorldSceneChange : MonoBehaviour
             {
                 Debug.Log("Brak wymaganej iloœci kluczy");
             }
-            
+
         }
     }
     private void Start()
